@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for publication in publications %}
+    <h2>{{ publication.title }}</h2>
+    <p>{{ publication.subtitle }}</p>
+    <p>{{ publication.content }}</p>
+    <img src="{{ publication.image.url }}" alt="Publication Image">
+
+    <!-- Datos de la cuenta asociada -->
+    <p>Name: {{ publication.account.name }}</p>
+    <p>Position: {{ publication.account.position }}</p>
+    <p>Description: {{ publication.account.description }}</p>
+    <!-- Otros datos de la cuenta -->
+
+    <hr>
+{% endfor %}
+
+{% endblock %}

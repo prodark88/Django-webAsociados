@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <header>
+        <nav> <!-- aqui el logo y nombre con fondo blanco --></nav>
+        
+        <nav> <!-- aqui las barra de navegacion con los distintos botones pedidos --></nav>
+        {% if mini_publications %}
+        <!-- Si hay publicaciones, realiza alguna acción -->
+        <ul>
+          {% for publication in mini_publications %}
+            <li>{{ publication.title }}</li>
+            <!-- Puedes acceder a otros atributos de la publicación según tu modelo -->
+          {% endfor %}
+        </ul>
+      {% else %}
+        <!-- Si no hay publicaciones, muestra un mensaje o realiza otra acción -->
+        <p>No hay publicaciones disponibles.</p>
+      {% endif %}
+    </header>
+</body>
+</html>
+
+<main>
+    <!-- aqui quiero q este el titutlo col md -10 -->
+    <!-- aqui una columna md-8 --> <!-- aqui una md 2  este sera el aside-->
+    <!-- aqui pondre todo el contenido edbajo del md-8 --> <!-- debajo del md 2quiero q sea para poner datos del creador del blog,la estructura sera la siguiente imagen de perfil debajo de esta  su nombre debajo sy peueña descripcion un hr y debajo fecha de publicacion -->
+</main>

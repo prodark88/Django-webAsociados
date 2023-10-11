@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static%}
+
+
+{% block nav %} {% endblock %}
+{% block content %}
+
+{% for info in info_enterprise %}
+<a href="{% url 'home' %}">
+    <h1 class="text-center mt-4">Group Molina&Espino</h1>
+</a>
+<div class="container text-center">
+    <!-- quiero un circulo q este detras de estos dos class row -->
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-3 ">
+            <img src="{% static 'img/figura.png' %}" alt="" class="img-fluid rounded-circle">
+        </div>
+    </div>
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-4">
+            <div class="circle"></div>
+            <p>{{info.history}}</p>
+        </div>
+    </div>
+</div>
+
+<div class="container ">
+    <!-- Inicio de la fila -->
+    <div class="row mt-4 mb-4 text-center justify-content-center align-items-center">
+        <!-- Columna 1 -->
+        <div class="col-md-4">
+            <!-- Contenido de la primera columna -->
+            <img src="{% static 'img/laptop4.png' %}" alt="imagen" class="img-fluid rounded-circle">
+
+        </div>
+        <!-- Columna 2 -->
+        <div class="col-md-6">
+            <!-- Contenido de la segunda columna -->
+            <h2>Mision</h2>
+            <p>{{info.mission}}</p>
+        </div>
+
+    </div>
+    <!-- Fin de la fila -->
+
+    <div class="row mt-4 mb-4 text-center justify-content-center align-items-center">
+
+        <!-- Columna 1 -->
+        <div class="col-md-6">
+            <!-- Contenido de la segunda columna -->
+            <h2>Vision</h2>
+            <p>{{info.vision}}</p>
+        </div>
+        <div class="col-md-4">
+            <!-- Contenido de la primera columna -->
+            <img src="{% static 'img/cuaderno.png' %}" alt="imagen" class="img-fluid rounded-circle">
+        </div>
+        <!-- Columna 2 -->
+
+
+    </div>
+
+    <div class="row mt-4 mb-5 text-center justify-content-center align-items-center">
+        <!-- Columna 1 -->
+        <div class="col-md-4">
+            <!-- Contenido de la primera columna -->
+            <img src="{% static 'img/cuaderno.png' %}" alt="imagen" class="img-fluid rounded-circle">
+        </div>
+        <!-- Columna 2 -->
+        <div class="col-md-6">
+            <!-- Contenido de la segunda columna -->
+            <h2>Valores</h2>
+            <p>{{info.values}}</p>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

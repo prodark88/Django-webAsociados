@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+{% if publication %}
+<div class="container mt-5 mb-5">
+    <!-- Título -->
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{publication.title}}aaa</h1>
+        </div>
+        <!-- Contenido Principal y Columna Secundaria -->
+        <div class="row col-md-12">
+            <!-- Contenido Principal -->
+            <div class="col-md-8">
+                <h3>{{publication.subtitle}}</h3>
+                <!-- Contenido principal del blog -->
+                <div class="row">
+                <div class="col-md-2">
+                    <p>L</p>
+                </div>
+                <div class="col-md-10">
+                    <!-- Mini Contenido -->
+                    <p>{{publication.mini_content}}</p>
+                </div>
+            </div>
+                <!-- Contenido Completo -->
+                <p>{{publication.content|safe}}</p>
+            </div>
+
+            <!-- Columna Secundaria -->
+            <div class="col-md-4 px-4">
+                <!-- Aquí va tu contenido de la columna secundaria -->
+                <div style="border: 1px solid #F3A712; padding: 10px;">
+                    <!-- Contenido del Aside (Información del Creador) -->
+                    <img src="{% static 'img/logo.png' %}" alt="Imagen de Perfil" class="img-fluid">
+                    <h3>{{ publication.account.name }}</h3>
+                    <p>{{ publication.account.description }}</p>
+                    <hr>
+                    <p>Fecha de Publicación: 5 de octubre de 2023</p>
+                </div>
+            </div>
+            <!-- Información del Creador del Blog -->
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,55 +1,93 @@
-{% extends 'base.html' %}
-
-{% load static %}
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 <main>
+  <!-- init img portada -->
   <div class="container-fluid p-0">
-    <img src="{% static 'img/portada.png' %}" class="w-100" alt="Portada">
+    <div id="arrow-left" class="arrow" style="color: #eaff03">
+      <i class="fas fa-chevron-left"></i>
+    </div>
+    <img id="portada-img" src="{% static 'img/portada.png' %}" alt="Portada" />
+    <div id="arrow-right" class="arrow" style="color: #e9f101">
+      <i class="fas fa-chevron-right"></i>
+    </div>
   </div>
+  <!-- end img -->
 
+  <!-- first box -->
   <div class="container my-5">
     <div class="row">
       <div class="col-md-12 text-center">
         <!-- Contenido de presentación aquí -->
-        <h3>Rompiendo paradigmas</h3>
+        <h2>Rompiendo paradigmas</h2>
         <p>Desafiando lo convencional en asesoría Legal y Contable</p>
       </div>
     </div>
   </div>
+  <!-- endbox -->
 
-  <section class="container my-5">
-    <h1 class="text-center mt-5">Nuestros servicios</h1>
-    <div class="container-fluid mt-5 mb-5" style="background: linear-gradient(to right, #FDDF96, #F8D870, #F3A712);">
-        <div class="row">
-            {% for service in services %}
-            <div class="col" style="text-align: center; padding: 20px; display: flex; flex-direction: column; align-items: center;">
-                <div style="flex-grow: 1;">
-                    <img src="{{ service.image.url}}" alt="Imagen Centrada" style="max-width: 80%; " class="rounded-circle">
-                    <h2>{{service.profession}}</h2>
-                    <p>{{service.mini_content}}</p>
-                </div>
-                <div class="mt-2">
-                    <a href="{% url 'services_by_especialidad' service.id %}" class="btn btn-primary" style="width: 100%;">Más info</a>
-                </div>
-            </div>
-            {% endfor %}
+  <!-- init services -->
+  <section>
+    <h2 class="text-center mt-4">Nuestros servicios</h2>
+    <div class="container-fluid mt-5 mb-5 shadow">
+      <div class="row row-cols-1 row-cols-md-3">
+        {% for service in services %}
+        <div
+          class="col mb-4"
+          style="
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          "
+        >
+          <div style="flex-grow: 1">
+            <img
+              src="{{service.image.url}}"
+              alt="Imagen Centrada"
+              style="
+                display: block;
+                margin: 0 auto;
+                max-width: 60%;
+                height: auto;
+              "
+              class="rounded-circle shadow"
+            />
+            <h3>{{service.profession}}</h3>
+            <p>{{service.mini_content}}</p>
+          </div>
+          <div class="mt-4">
+            <a
+              href="{% url 'services_by_especialidad' service.id %}"
+              class="btn btn-primary"
+              style="width: 100%"
+              >Más info</a
+            >
+          </div>
         </div>
+        {% endfor %}
+      </div>
     </div>
   </section>
+  <!-- end services -->
 
+  <!-- init second box -->
   <div class="container my-5">
-    <div class="row ">
+    <div class="row">
       <div class="col-md-4 mx-auto text-center">
-        <!-- Contenido de presentación aquí -->
-        <h3>La constancia es la prueba de nuestra excelencia</h3>
-        <p> Comprometidos con la honestidad y la transparencia, nos esforzamos diariamente por ser eficientes,
-          polifacéticos y especializados. Nuestra firma se distingue por la creatividad y la persuasión.</p>
+        <h2>La constancia es la prueba de nuestra excelencia</h2>
+        <p>
+          Comprometidos con la honestidad y la transparencia, nos esforzamos
+          diariamente por ser eficientes, polifacéticos y especializados.
+          Nuestra firma se distingue por la creatividad y la persuasión.
+        </p>
       </div>
     </div>
   </div>
+  <!-- endbox  -->
 
+  <!--  init publications -->
   <section class="container my-5">
-    <h3 class="text-center mb-4">Últimas Publicaciones</h3>
+    <h2 class="text-center mb-4">Últimas Publicaciones</h2>
 
     <div class="row">
       <!-- Publicación 1 -->
@@ -57,20 +95,31 @@
       <div class="col-md-3 mb-4">
         <div class="card h-100">
           <a href="publicacion_1.html">
-            <img src="{{ minipub.image.url }}" class="card-img-top" alt="Publicación 1">
+            <img
+              src="{{ minipub.image.url }}"
+              class="card-img-top"
+              alt="Publicación 1"
+            />
           </a>
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">{{ minipub.title }}</h5>
-            <p class="card-text overflow-hidden" style="max-height: 100px;">{{ minipub.mini_content|linebreaksbr }}</p>
+            <p class="card-text overflow-hidden" style="max-height: 100px">
+              {{ minipub.mini_content|linebreaksbr }}
+            </p>
 
             <div class="d-flex justify-content-between align-items-end mt-auto">
               <div class="text-muted">
-                <small style="white-space: nowrap;">{{ minipub.account.name }}</small>
-                <br>
+                <small style="white-space: nowrap"
+                  >{{ minipub.account.name }}</small
+                >
+                <br />
                 <small>{{ minipub.updated_at }}</small>
               </div>
-              <a href="{% url 'publication_detail' minipub.id %}"
-                class="btn btn-primary btn-sm d-inline-block">Boletín</a>
+              <a
+                href="{% url 'publication_detail' minipub.id %}"
+                class="btn btn-primary btn-sm d-inline-block"
+                >Boletín</a
+              >
             </div>
           </div>
         </div>
@@ -78,6 +127,6 @@
       {% endfor %}
     </div>
   </section>
-
+  <!-- endpublications -->
 </main>
 {% endblock %}

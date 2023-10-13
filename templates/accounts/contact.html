@@ -1,0 +1,76 @@
+{% extends 'base.html' %} {% load static %} 
+{% block nav %} {% endblock %} 
+{% block footer %} {% endblock %} 
+
+{% block title %} Contactos {% endblock %}
+
+{% block content %} 
+{% include 'includes/second-navbar.html'%}
+<body style="background-color: #1c2541">
+  <div class="container mb-5">
+    <div>
+      <a href="{% url 'home' %}" class="text-center d-block mt-4">
+        <h1>Group Molina&Espino</h1>
+      </a>
+      <div>
+        <hr style="color: #005fa3; border-width: 6px" />
+      </div>
+    </div>
+    <div class="container mt-5">
+      <div class="row">
+        <!-- Columna 1 -->
+        <div class="col-md-6">
+          <!-- Contenedor 1 -->
+          <div class="d-flex align-items-center justify-content-center">
+            <!-- Cuadrado amarillo -->
+            <!-- Contenido dentro del cuadrado -->
+            <img
+              src="{% static 'img/figura.png' %}"
+              alt="Imagen"
+              class="img-fluid rounded-circle shadow"
+              style="border: #005fa3 solid 8px; max-width: 70%"
+            />
+            <!-- Imagen a la derecha del cuadrado -->
+          </div>
+        </div>
+
+        <!-- Columna 2 -->
+        <div class="col-md-6">
+          <!-- Contenedor 2 -->
+          <div class="row text-white">
+            <div class="col-md-7">
+              <h3>Contact details</h3>
+              <hr style="color: #005fa3; border-width: 6px" />
+              <table>
+                <tbody>
+                  <tr>
+                    <th scope="row">Telefono:</th>
+                    <br />
+                    <td><span class="mr-4">+51 989 561 633</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Telefono:</th>
+                    <td>+51 942 424 616</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Direción:</th>
+                    <td>Av. Mariscal Cáceres N° 1177 -Ayacucho</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Direción:</th>
+                    <td>Av. La Cultura N° 378 - Pichari</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Email:</th>
+                    <td>rosateresamolinac@gmail.com</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}

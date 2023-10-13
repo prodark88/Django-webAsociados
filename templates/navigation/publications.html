@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+{% block title %} Publicaciones {% endblock %}
 {% for publication in publications %}
     <h2>{{ publication.title }}</h2>
     <p>{{ publication.subtitle }}</p>

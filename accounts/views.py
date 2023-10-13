@@ -23,3 +23,7 @@ def enterprise(request):
 
 def staff(request):
     return render(request,'accounts/staff.html')
+
+
+def contact(request):
+    return render(request, 'accounts/contact.html')

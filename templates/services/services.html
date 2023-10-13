@@ -1,25 +1,44 @@
-{% extends 'base.html' %}
-{% load static%}
+{% extends 'base.html' %} {% load static%} 
 
-{% block nav %}{% endblock %}
-{% block content %}
-<body>
-    <h1 class="text-center mt-4">Nuestros servicios</h1>
-    <div class="container-fluid mt-5 mb-5" style="background: linear-gradient(to right, #FDDF96, #F8D870, #F3A712);">
-        <div class="row">
-            {% for service in services %}
-            <div class="col" style="text-align: center; padding: 20px; display: flex; flex-direction: column; align-items: center;">
-                <div style="flex-grow: 1;">
-                    <img src="{{service.image.url}}" alt="Imagen Centrada" style="display: block; margin: 0 auto; max-width: 80%; height: auto;" class="rounded-circle">
-                    <h2>{{service.profession}}</h2>
-                    <p>{{service.mini_content}}</p>
-                </div>
-                <div class="mt-2">
-                    <a href="{% url 'services_by_especialidad' service.id %}" class="btn btn-primary" style="width: 100%;">Más info</a>
-                </div>
-            </div>
-            {% endfor %}
+{% block footer %} {% endblock %} 
+{%block nav %}{% endblock %} 
+{% block title %} Servicios {% endblock %}
+
+{% block content %} 
+{% include 'includes/second-navbar.html'%}
+<body style="background-color: #1c2541">
+  <h1 class="text-center mt-4">Nuestros servicios</h1>
+  <div class="container-fluid mt-5 mb-5">
+    <div class="row row-cols-1 row-cols-md-3">
+      {% for service in services %}
+      <div
+        class="col mb-4 text-white text-center flex-column align-items-center"
+        style="
+          padding: 20px;
+          display: flex;
+        "
+      >
+        <div style="flex-grow: 1">
+          <img
+            src="{{service.image.url}}"
+            alt="Imagen Centrada"
+            style="display: block; margin: 0 auto; max-width: 60%; height: auto"
+            class="rounded-circle"
+          />
+          <h2>{{service.profession}}</h2>
+          <p>{{service.mini_content}}</p>
         </div>
+        <div class="mt-4">
+          <a
+            href="{% url 'services_by_especialidad' service.id %}"
+            class="btn btn-primary"
+            style="width: 100%"
+            >Más info</a
+          >
+        </div>
+      </div>
+      {% endfor %}
     </div>
+  </div>
 </body>
 {% endblock %}

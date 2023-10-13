@@ -1,56 +1,36 @@
-{% extends 'base.html' %}
-{% load static%}
+{% extends 'base.html' %} {% load static%} {% block nav %}{% endblock %} 
 
+{% block title %} Detalle Servicio {% endblock %}
+{%block content %}
+{% include 'includes/second-navbar.html'%}
+{% for category in categories %}
+<div class="container mt-5 mb-5">
+  <div class="card mx-auto" style="max-width: 800px">
+    <h1 class="text-center">{{category.profession}}</h1>
 
-{% block content %}
-
-  {% for category in categories %}
-  <div class="container mt-5 mb-5">
-    <div class="card mx-auto" style="max-width: 800px;">
-      <h1 class="text-center">{{category.profession}}</h1>
-
-      <div class="d-flex flex-row flex-wrap">
-        {% for sub_category in category.subcategory_set.all %}
-          <div class="col-md-6">
-            <div class="card mb-3">
-              <div class="card-header bg-light text-center">
-                <h4 class="card-subtitle">{{ sub_category.name }}</h4>
-              </div>
-              {% for service in sub_category.service_set.all %}
-              <div class="card-text mb-2 mt-2">
-                <li class="list-group-item d-flex justify-content-between align-items-center mr-3 ml-3">
-                  {{ service.name }}
-                  <span class="badge bg-success rounded-pill">
-                    <i class="fas fa-check"></i>
-                  </span>
-                </li>
-              </div>
-              {% endfor %}
-            </div>
+    <div class="d-flex flex-row flex-wrap">
+      {% for sub_category in category.subcategory_set.all %}
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <div class="card-header bg-light text-center">
+            <h4 class="card-subtitle">{{ sub_category.name }}</h4>
           </div>
-        {% endfor %}
+          {% for service in sub_category.service_set.all %}
+          <div class="card-text mb-2 mt-2">
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center mr-3 ml-3"
+            >
+              {{ service.name }}
+              <span class="badge bg-success rounded-pill">
+                <i class="fas fa-check"></i>
+              </span>
+            </li>
+          </div>
+          {% endfor %}
+        </div>
       </div>
+      {% endfor %}
     </div>
   </div>
-  {% endfor %}
-{% endblock %}
-
-
-
-
-  <h2 class="card-title text-center">{{ category.profession}}</h2>
-  <!-- quiero q sean tipo row osea si hay mas de un recporrido q se ponga a la derecha y asi sucesivamente
-  no quiero todo se despliegue en una columna larga  -->
-  {% for sub_category in category.subcategory_set.all %}
-  <div class="card-header bg-light text-center">
-    <h4 class="card-subtitle">{{ sub_category.name }}</h4>
-  </div>
-  {% for service in sub_category.service_set.all %}
-  <div class="card-body">
-    <ul class="list-group">
-      <li class="list-group">{{service.name}}</li>
-      <!-- Agrega más servicios según sea necesario -->
-    </ul>
-  </div>
-  {% endfor %}
-  {% endfor %}
+</div>
+{% endfor %} {% endblock %}

@@ -26,11 +26,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG","False").lower() == "True"
+DEBUG = 'RENDER' not in os.environ
+#DEBUG = os.environ.get("DEBUG","False").lower() == "True"
+#DEBUG = True
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOST", "").split(",")
 
 
+#ALLOWED_HOSTS = os.environ.get("ALLOWED_HOST", "").split(",")
+
+ALLOWED_HOSTS = []
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Application definition
 
@@ -99,8 +106,18 @@ DATABASES = {
         'NAME': BASE_DIR / "db.sqlite3",
     }
 }
-database_url = os.environ.get("DATABASE_URL")
-DATABASES['default'] = dj_database_url.parse(database_url)
+
+DATABASES = {
+    'default': dj_database_url.config(
+        # Feel free to alter this value to suit your needs.
+        default='postgres://db_webestudio_user:1rbSQLYWLt8XzDKoRP35y3EyGAN6eCiX@dpg-cknca6n83ejs73dul480-a.oregon-postgres.render.com/db_webestudio',
+        conn_max_age=600
+    )
+}
+
+
+""" database_url = os.environ.get("DATABASE_URL")
+DATABASES['default'] = dj_database_url.parse(database_url) """
 
 
 # Si hay una URL de base de datos, actualiza la configuración

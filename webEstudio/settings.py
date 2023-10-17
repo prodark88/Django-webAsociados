@@ -26,12 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'RENDER' not in os.environ
+DEBUG = os.environ.get("DEBUG","False").lower() == "True"
 
-ALLOWED_HOSTS = []
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOST", "").split(",")
+
 
 
 # Application definition
@@ -101,12 +99,14 @@ DATABASES = {
         'NAME': BASE_DIR / "db.sqlite3",
     }
 }
-# Obtén la URL de la base de datos desde la variable de entorno
 database_url = os.environ.get("DATABASE_URL")
+DATABASES['default'] = dj_database_url.parse(database_url)
+
 
 # Si hay una URL de base de datos, actualiza la configuración
-if database_url:
-    DATABASES["default"] = dj_database_url.parse(database_url)
+""" if database_url:
+    DATABASES["default"] = dj_database_url.parse(database_url) """
+#postgres://db_webestudio_user:1rbSQLYWLt8XzDKoRP35y3EyGAN6eCiX@dpg-cknca6n83ejs73dul480-a.oregon-postgres.render.com/db_webestudio
 #postgres://db_webestudio_user:1rbSQLYWLt8XzDKoRP35y3EyGAN6eCiX@dpg-cknca6n83ejs73dul480-a.oregon-postgres.render.com/db_webestudio
 
 
@@ -144,19 +144,19 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
+# Configuración para desarrollo
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / "staticfiles"
+#STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # Following settings only make sense on production and may break development environments.
-if not DEBUG:
-    # Tell Django to copy statics to the `staticfiles` directory
-    # in your application directory on Render.
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-    # Turn on WhiteNoise storage backend that takes care of compressing static files
-    # and creating unique names for each version so they can safely be cached forever.
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# Configuración para producción
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    
 
     
 #medias

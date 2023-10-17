@@ -8,13 +8,12 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
-"""
 
+"""
 from pathlib import Path
 
 import os
 import dj_database_url
-import whitenoise
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -93,14 +92,15 @@ WSGI_APPLICATION = 'webEstudio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(
-        # Feel free to alter this value to suit your needs.
-        default='postgresql://postgres:postgres@localhost:5432/mysite',
-        conn_max_age=600
-    )
+DATABASES = {#hola
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / "db.sqlite3",
+    }
 }
-
+database_url= os.environ.get("DATABASE_URL")
+DATABASES["default"] = dj_database_url.parse(database_url)
+#postgres://db_webestudio_user:1rbSQLYWLt8XzDKoRP35y3EyGAN6eCiX@dpg-cknca6n83ejs73dul480-a.oregon-postgres.render.com/db_webestudio
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -159,6 +159,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CKEDITOR_CONFIGS = {
     'default': {
         'width': '100%',
-        'toolbar': 'full',  # Puedes cambiar esto a 'basic' o 'standard' según tu preferencia
+        'toolbar': 'full', 
     },
 }

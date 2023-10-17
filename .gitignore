@@ -5,8 +5,9 @@
 __pycache__
 db.sqlite3
 media
+.x.txt
+x.txt/
 x.txt
-
 
 # Backup files # 
 *.bak 
@@ -100,6 +101,8 @@ celerybeat-schedule.*
 
 # Environments
 env
+.env/
+..env
 .env 
 .venv 
 env/ 

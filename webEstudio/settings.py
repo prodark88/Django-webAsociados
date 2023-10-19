@@ -26,8 +26,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = 'RENDER' not in os.environ
-DEBUG = True
+DEBUG = 'RENDER' not in os.environ
+#DEBUG = True
 
 
 
@@ -161,16 +161,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 # Configuración para desarrollo
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
 
 STATIC_URL = 'static/'
 #STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # Following settings only make sense on production and may break development environments.
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Configuración para producción
 if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     
 

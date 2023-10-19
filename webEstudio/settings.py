@@ -35,9 +35,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'django-webasociados.onrender.com']
 
-""" RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME',"django-webasociados.onrender.com",)
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME) """
 
 # Application definition
 
@@ -47,8 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    "whitenoise.runserver_nostatic",
     'django.contrib.staticfiles',
+    "whitenoise.runserver_nostatic",
   
     
 
@@ -116,14 +113,10 @@ DATABASES = {
 }
 
 
-""" database_url = os.environ.get("DATABASE_URL")
-DATABASES['default'] = dj_database_url.parse(database_url) """
 
 
-# Si hay una URL de base de datos, actualiza la configuración
-""" if database_url:
-    DATABASES["default"] = dj_database_url.parse(database_url) """
-#postgres://db_webestudio_user:1rbSQLYWLt8XzDKoRP35y3EyGAN6eCiX@dpg-cknca6n83ejs73dul480-a.oregon-postgres.render.com/db_webestudio
+
+
 #postgres://db_webestudio_user:1rbSQLYWLt8XzDKoRP35y3EyGAN6eCiX@dpg-cknca6n83ejs73dul480-a.oregon-postgres.render.com/db_webestudio
 
 
@@ -168,12 +161,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 #STATIC_ROOT = BASE_DIR / "staticfiles"
-""" STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-# Following settings only make sense on production and may break development environments.
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# Configuración para producción
-if not DEBUG:
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' """
+
     
 
     
